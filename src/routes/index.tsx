@@ -8,7 +8,10 @@ export const Route = createFileRoute("/")({
 });
 
 function VorteqonPage() {
+  const [team, setTeam] = useState<TeamMember[]>([]);
+
   useEffect(() => {
+    setTeam(loadTeam());
     const s = document.createElement("script");
     s.src = "/vorteqon.js";
     s.async = false;
@@ -17,6 +20,7 @@ function VorteqonPage() {
       s.remove();
     };
   }, []);
+
 
   return (
     <>
