@@ -1,12 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { loadTeam, type TeamMember } from "@/lib/team";
+
 
 export const Route = createFileRoute("/")({
   component: VorteqonPage,
 });
 
 function VorteqonPage() {
+  const [team, setTeam] = useState<TeamMember[]>([]);
+
   useEffect(() => {
+    setTeam(loadTeam());
     const s = document.createElement("script");
     s.src = "/vorteqon.js";
     s.async = false;
@@ -15,6 +20,7 @@ function VorteqonPage() {
       s.remove();
     };
   }, []);
+
 
   return (
     <>
@@ -43,13 +49,13 @@ function VorteqonPage() {
           <a href="#contact" className="nav-link">Contact</a>
         </div>
         <div className="nav-right">
-          <button className="icon-btn" id="authBtn" aria-label="User account">
+          <Link to="/admin" className="icon-btn" aria-label="Admin">
             <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              <path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" />
             </svg>
-          </button>
+          </Link>
         </div>
+
       </nav>
 
       <div id="sidebar-overlay" />
@@ -77,32 +83,12 @@ function VorteqonPage() {
           <a href="#" className="sidebar-link" data-close="">Wishlist</a>
           <a href="#" className="sidebar-link" data-close="">My Orders</a>
           <div className="sidebar-divider" />
-          <a href="#" className="sidebar-link" data-close="">Help &amp; Support</a>
-          <a href="#" className="sidebar-link" id="sidebarAuthLink" data-close="">Login / Sign Up</a>
+          <Link to="/admin" className="sidebar-link" data-close="">Admin</Link>
         </nav>
         <div className="sidebar-footer">© 2025 VORTEQON</div>
       </aside>
 
-      {/* AUTH MODAL */}
-      <div id="auth-modal">
-        <div className="modal-box">
-          <button className="modal-close" id="modalClose">✕</button>
-          <h2 className="modal-title">ACCESS</h2>
-          <p className="modal-subtitle">Join the Vorteqon force — sign in or create an account.</p>
-          <div className="auth-tabs">
-            <button className="auth-tab active" data-tab="login">Login</button>
-            <button className="auth-tab" data-tab="signup">Sign Up</button>
-          </div>
-          <form className="auth-form" id="authForm">
-            <div id="signupNameField" style={{ display: "none" }}>
-              <input type="text" placeholder="Your Name" id="authName" autoComplete="name" />
-            </div>
-            <input type="email" placeholder="Email Address" id="authEmail" required autoComplete="email" />
-            <input type="password" placeholder="Password" id="authPassword" required autoComplete="current-password" />
-            <button type="submit" className="btn-primary" id="authSubmit">LOGIN</button>
-          </form>
-        </div>
-      </div>
+
 
       <div className="toast" id="toast" />
 
@@ -183,31 +169,11 @@ function VorteqonPage() {
           <p className="section-label reveal">People</p>
           <h2 className="section-title reveal" style={{ textAlign: "center" }}>The Team</h2>
           <div className="team-wrapper">
-            <TeamCard initials="BS" name="Bhuvan Shankar R" role="Founder & CEO"
-              bio="Teenage software developer and visionary entrepreneur who built Vorteqon to engineer real-world impact through technology."
-              link="https://www.linkedin.com/in/bhuvan-shankar-18a15a304" />
-            <TeamCard initials="VA" name="Vasanthan" role="MD"
-              bio="Strategic Managing Director driving vision, capital alignment, and long-term execution at Vorteqon."
-              link="https://www.linkedin.com/in/vasanthananbu" />
-            <TeamCard initials="SU" name="Surveshwar" role="COO"
-              bio="Operations-focused COO architecting scalable systems and ensuring disciplined, outcome-driven delivery."
-              link="https://www.linkedin.com/in/surveshwar-t-3355b530b" />
-            <TeamCard initials="AM" name="Amizhthan" role="Developer"
-              bio="Core Software Developer engineering robust, production-grade solutions that power Vorteqon's products."
-              link="https://www.linkedin.com/in/amizhthan-a-0083a1319/" />
-            <TeamCard initials="HP" name="Hariprasath" role="Developer"
-              bio="Aspiring Developer building high-performance, user-centric technology with clean, scalable architecture."
-              link="https://www.linkedin.com/in/hari-prasath-167846389" />
-            <TeamCard initials="SB" name="Sivabalan" role="3D/2D Animator"
-              bio="Creative animator shaping visually immersive and fluid experiences for Vorteqon's products."
-              link="#" />
-            <TeamCard initials="VW" name="Vaitheeshwaran" role="Tester"
-              bio="Diligent QA and tester ensuring precision and flawless performance across all Vorteqon solutions."
-              link="https://www.linkedin.com/in/vaitheeswaran-v-110a48313" />
-            <TeamCard initials="VG" name="Vignesh" role="Developer"
-              bio="Passionate software developer contributing to scalable backend systems and high-end core operations."
-              link="https://www.linkedin.com/in/vignesh-r-878776365" />
+            {team.map((m) => (
+              <TeamCard key={m.id} initials={m.initials} name={m.name} role={m.role} bio={m.bio} link={m.link} />
+            ))}
           </div>
+
         </div>
 
         <div className="section-wrap" id="contact">
