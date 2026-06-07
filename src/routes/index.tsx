@@ -49,13 +49,13 @@ function VorteqonPage() {
           <a href="#contact" className="nav-link">Contact</a>
         </div>
         <div className="nav-right">
-          <button className="icon-btn" id="authBtn" aria-label="User account">
+          <Link to="/admin" className="icon-btn" aria-label="Admin">
             <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              <path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" />
             </svg>
-          </button>
+          </Link>
         </div>
+
       </nav>
 
       <div id="sidebar-overlay" />
