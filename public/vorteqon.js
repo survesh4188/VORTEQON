@@ -202,53 +202,8 @@
     overlay.addEventListener('click', closeSidebar);
     document.querySelectorAll('[data-close]').forEach(l => l.addEventListener('click', closeSidebar));
 
-    document.getElementById('sidebarAuthLink').addEventListener('click', e => {
-      e.preventDefault(); closeSidebar(); setTimeout(openAuthModal, 350);
-    });
+    // Auth removed — site is static. Admin lives at /admin.
 
-    // ─── AUTH MODAL ───────────────────────────────────────────────
-    const authModal = document.getElementById('auth-modal');
-    const authBtn = document.getElementById('authBtn');
-    const modalClose = document.getElementById('modalClose');
-    const authTabs = document.querySelectorAll('.auth-tab');
-    const authSubmit = document.getElementById('authSubmit');
-    const nameField = document.getElementById('signupNameField');
-    let currentTab = 'login';
-    let currentUser = null;
-
-    function openAuthModal() { authModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeAuthModal() { authModal.classList.remove('open'); document.body.style.overflow = ''; }
-
-    authBtn.addEventListener('click', () => {
-      if (currentUser) { currentUser = null; restoreUserIcon(); showToast('Logged out successfully.'); }
-      else openAuthModal();
-    });
-    modalClose.addEventListener('click', closeAuthModal);
-    authModal.addEventListener('click', e => { if (e.target === authModal) closeAuthModal(); });
-
-    authTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        authTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        currentTab = tab.dataset.tab;
-        nameField.style.display = currentTab === 'signup' ? 'block' : 'none';
-        authSubmit.textContent = currentTab === 'signup' ? 'CREATE ACCOUNT' : 'LOGIN';
-      });
-    });
-
-    document.getElementById('authForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const email = document.getElementById('authEmail').value;
-      const name = document.getElementById('authName').value || email.split('@')[0];
-      currentUser = { name, email };
-      authBtn.innerHTML = `<span style="font-family:var(--font-display);font-size:0.6rem;color:var(--cyan);letter-spacing:1px">${name.slice(0, 2).toUpperCase()}</span>`;
-      closeAuthModal();
-      showToast(currentTab === 'login' ? `Welcome back, ${name}! ⚡` : `Account created! Welcome, ${name}! ⚡`);
-    });
-
-    function restoreUserIcon() {
-      authBtn.innerHTML = `<svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
-    }
 
     // ─── CONTACT FORM ─────────────────────────────────────────────
     document.getElementById('contactForm').addEventListener('submit', e => {
