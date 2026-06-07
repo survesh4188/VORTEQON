@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { loadTeam, type TeamMember } from "@/lib/team";
+
 
 export const Route = createFileRoute("/")({
   component: VorteqonPage,
