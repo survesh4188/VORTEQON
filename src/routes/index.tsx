@@ -83,32 +83,12 @@ function VorteqonPage() {
           <a href="#" className="sidebar-link" data-close="">Wishlist</a>
           <a href="#" className="sidebar-link" data-close="">My Orders</a>
           <div className="sidebar-divider" />
-          <a href="#" className="sidebar-link" data-close="">Help &amp; Support</a>
-          <a href="#" className="sidebar-link" id="sidebarAuthLink" data-close="">Login / Sign Up</a>
+          <Link to="/admin" className="sidebar-link" data-close="">Admin</Link>
         </nav>
         <div className="sidebar-footer">© 2025 VORTEQON</div>
       </aside>
 
-      {/* AUTH MODAL */}
-      <div id="auth-modal">
-        <div className="modal-box">
-          <button className="modal-close" id="modalClose">✕</button>
-          <h2 className="modal-title">ACCESS</h2>
-          <p className="modal-subtitle">Join the Vorteqon force — sign in or create an account.</p>
-          <div className="auth-tabs">
-            <button className="auth-tab active" data-tab="login">Login</button>
-            <button className="auth-tab" data-tab="signup">Sign Up</button>
-          </div>
-          <form className="auth-form" id="authForm">
-            <div id="signupNameField" style={{ display: "none" }}>
-              <input type="text" placeholder="Your Name" id="authName" autoComplete="name" />
-            </div>
-            <input type="email" placeholder="Email Address" id="authEmail" required autoComplete="email" />
-            <input type="password" placeholder="Password" id="authPassword" required autoComplete="current-password" />
-            <button type="submit" className="btn-primary" id="authSubmit">LOGIN</button>
-          </form>
-        </div>
-      </div>
+
 
       <div className="toast" id="toast" />
 
