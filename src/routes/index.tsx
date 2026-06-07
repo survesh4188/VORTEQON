@@ -169,31 +169,11 @@ function VorteqonPage() {
           <p className="section-label reveal">People</p>
           <h2 className="section-title reveal" style={{ textAlign: "center" }}>The Team</h2>
           <div className="team-wrapper">
-            <TeamCard initials="BS" name="Bhuvan Shankar R" role="Founder & CEO"
-              bio="Teenage software developer and visionary entrepreneur who built Vorteqon to engineer real-world impact through technology."
-              link="https://www.linkedin.com/in/bhuvan-shankar-18a15a304" />
-            <TeamCard initials="VA" name="Vasanthan" role="MD"
-              bio="Strategic Managing Director driving vision, capital alignment, and long-term execution at Vorteqon."
-              link="https://www.linkedin.com/in/vasanthananbu" />
-            <TeamCard initials="SU" name="Surveshwar" role="COO"
-              bio="Operations-focused COO architecting scalable systems and ensuring disciplined, outcome-driven delivery."
-              link="https://www.linkedin.com/in/surveshwar-t-3355b530b" />
-            <TeamCard initials="AM" name="Amizhthan" role="Developer"
-              bio="Core Software Developer engineering robust, production-grade solutions that power Vorteqon's products."
-              link="https://www.linkedin.com/in/amizhthan-a-0083a1319/" />
-            <TeamCard initials="HP" name="Hariprasath" role="Developer"
-              bio="Aspiring Developer building high-performance, user-centric technology with clean, scalable architecture."
-              link="https://www.linkedin.com/in/hari-prasath-167846389" />
-            <TeamCard initials="SB" name="Sivabalan" role="3D/2D Animator"
-              bio="Creative animator shaping visually immersive and fluid experiences for Vorteqon's products."
-              link="#" />
-            <TeamCard initials="VW" name="Vaitheeshwaran" role="Tester"
-              bio="Diligent QA and tester ensuring precision and flawless performance across all Vorteqon solutions."
-              link="https://www.linkedin.com/in/vaitheeswaran-v-110a48313" />
-            <TeamCard initials="VG" name="Vignesh" role="Developer"
-              bio="Passionate software developer contributing to scalable backend systems and high-end core operations."
-              link="https://www.linkedin.com/in/vignesh-r-878776365" />
+            {team.map((m) => (
+              <TeamCard key={m.id} initials={m.initials} name={m.name} role={m.role} bio={m.bio} link={m.link} />
+            ))}
           </div>
+
         </div>
 
         <div className="section-wrap" id="contact">
