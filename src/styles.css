@@ -1968,18 +1968,6 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
-.admin-field input[type="file"]::file-selector-button {
-  background: var(--cyan-dim);
-  color: var(--cyan);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 6px 10px;
-  margin-right: 10px;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-}
 .admin-tabs {
   display: flex;
   gap: 8px;
