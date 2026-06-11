@@ -83,6 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Vorteqon — a vortex of technology spinning the world forward." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Vorteqon | Engineering the Future" },
+      { name: "twitter:description", content: "Vorteqon — a vortex of technology spinning the world forward." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/16269f67-1999-48f5-89e3-9dc3993f2057/id-preview-d29956ab--2fe0af3b-226d-40c4-a0b8-80260914d806.lovable.app-1781142985681.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/16269f67-1999-48f5-89e3-9dc3993f2057/id-preview-d29956ab--2fe0af3b-226d-40c4-a0b8-80260914d806.lovable.app-1781142985681.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
