@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { loadTeam, type TeamMember } from "@/lib/team";
+import { loadProjects, type Project } from "@/lib/projects";
 
 
 export const Route = createFileRoute("/")({
@@ -9,9 +10,11 @@ export const Route = createFileRoute("/")({
 
 function VorteqonPage() {
   const [team, setTeam] = useState<TeamMember[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     setTeam(loadTeam());
+    setProjects(loadProjects());
     const s = document.createElement("script");
     s.src = "/vorteqon.js";
     s.async = false;
@@ -153,15 +156,9 @@ function VorteqonPage() {
           <p className="section-label reveal">Products</p>
           <h2 className="section-title reveal">Projects</h2>
           <div className="projects-grid">
-            <ProjectCard status="dev" icon="⚛️" title="QuantumOS"
-              desc="A secure, lightweight operating system engineered for next-gen Android devices. Built for speed and privacy from the ground up."
-              tag="OS · Android" progress="72%" />
-            <ProjectCard status="dev" icon="⌨️" title="V-Key"
-              desc="A customizable keyboard built for speed, privacy, and a seamless mobile experience. Your words, your rules."
-              tag="Mobile · Productivity" progress="55%" />
-            <ProjectCard status="live" icon="🤖" title="Vortex AI"
-              desc="An AI-driven productivity suite designed to empower creators and developers. Smarter tools for a faster world."
-              tag="AI · Productivity" progress="90%" />
+            {projects.map((p) => (
+              <ProjectCard key={p.id} status={p.status} icon={p.icon} title={p.title} desc={p.desc} tag={p.tag} progress={p.progress} />
+            ))}
           </div>
         </div>
 
@@ -170,7 +167,7 @@ function VorteqonPage() {
           <h2 className="section-title reveal" style={{ textAlign: "center" }}>The Team</h2>
           <div className="team-wrapper">
             {team.map((m) => (
-              <TeamCard key={m.id} initials={m.initials} name={m.name} role={m.role} bio={m.bio} link={m.link} />
+              <TeamCard key={m.id} initials={m.initials} name={m.name} role={m.role} bio={m.bio} link={m.link} image={m.image} />
             ))}
           </div>
 
@@ -251,12 +248,18 @@ function ProjectCard({ status, icon, title, desc, tag, progress }: {
   );
 }
 
-function TeamCard({ initials, name, role, bio, link }: {
-  initials: string; name: string; role: string; bio: string; link: string;
+function TeamCard({ initials, name, role, bio, link, image }: {
+  initials: string; name: string; role: string; bio: string; link: string; image?: string;
 }) {
   return (
-    <div className="team-card reveal">
-      <div className="avatar">{initials}</div>
+    <div className={`team-card reveal${image ? " has-img" : ""}`}>
+      {image && (
+        <>
+          <div className="team-card-bg-img" style={{ backgroundImage: `url(${image})` }} />
+          <div className="team-card-glass-overlay" />
+        </>
+      )}
+      {!image && <div className="avatar">{initials}</div>}
       <h3>{name}</h3>
       <p className="team-role">{role}</p>
       <p className="team-bio">{bio}</p>
