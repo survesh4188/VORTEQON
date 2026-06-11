@@ -1950,3 +1950,87 @@
 }
 .admin-row { display: flex; gap: 12px; }
 .admin-card-foot { display: flex; justify-content: flex-end; }
+
+/* admin: extras for v2 (tabs, login, select, file input, danger flash) */
+.admin-field select {
+  background: rgba(0,229,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text-bright);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  width: 100%;
+}
+.admin-field input[type="file"] {
+  padding: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.admin-field input[type="file"]::file-selector-button {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.admin-tab {
+  background: transparent;
+  border: none;
+  color: rgba(176,204,224,0.6);
+  padding: 12px 18px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.admin-tab:hover { color: var(--cyan); }
+.admin-tab.active {
+  color: var(--cyan);
+  border-bottom-color: var(--cyan);
+}
+.admin-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+.admin-flash.danger {
+  border-color: rgba(255,107,138,0.4);
+  background: rgba(255,107,138,0.08);
+  color: #ff6b8a;
+}
+.admin-login {
+  max-width: 440px;
+  margin: 60px auto 0;
+  padding: 40px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.admin-login form { display: flex; flex-direction: column; gap: 14px; }
+.admin-login code {
+  background: rgba(0,229,255,0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--cyan);
+  font-size: 11px;
+}
