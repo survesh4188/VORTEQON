@@ -5,6 +5,7 @@ export type TeamMember = {
   role: string;
   bio: string;
   link: string;
+  image?: string; // data URL
 };
 
 export const DEFAULT_TEAM: TeamMember[] = [
